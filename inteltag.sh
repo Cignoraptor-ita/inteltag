@@ -19,7 +19,7 @@ echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\
 echo -e "========\e[01;32mINTEL\e[01;34mTAG============"
 echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-"
 echo  " "
-echo -e "\e[01;33mCodename: \e[01;34mTheswantweet\e[00m"
+echo -e "\e[01;33mCodename: \e[01;34mTweet of the blue swan\e[00m"
 echo " "
         echo -e "\e[01;34mSearch an hashtag of interest and discover associated users and hashtags\e[00m"
         echo -e "Very simple \e[01;34mOSINT\e[00m tool for test purpose"
@@ -45,16 +45,40 @@ done
         
 hoi=$(cat pert2.txt)
       
-links2 -http.fake-user-agent "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-us) AppleWebKit/534.16+ (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4" -dump https://twitter.com/search?q=$hoi > cor.txt
+links2 -dump https://twitter.com/search?q=$hoi > cor.txt
 
 echo " "
 echo -e "\e[01;32mHashtags: \e[00m"
 echo " "
-grep -Eio "#[a-z]+" cor.txt > corhash.txt
+grep -Eio "#[a-zA-Z0-9./:-]+" cor.txt > corhash.txt
 cat corhash.txt
 echo -e "\e[01;34mUSERS: \e[00m"
 echo " "
-grep -Eio "@[a-z]+" cor.txt > cornomi.txt
+grep -Eio "@[a-zA-Z0-9./:-]+" cor.txt > cornomi.txt
 cat cornomi.txt
      rm cornomi.txt && rm corhash.txt && rm cor.txt
      rm pert.txt && rm pert2.txt  
+     
+     echo " "
+     echo "Insert position/City: (Exemple Venezia)"
+     read pos
+     
+     links2 -dump https://twitter.com/search?q=%23m5stelle%20near%3A%22$pos%22 > posiz.txt
+    
+    echo " "
+echo -e "\e[01;32mAssociated $hastg Hashtags near $pos: \e[00m"
+echo " " 
+     grep -Eio "#[a-zA-Z0-9./:-]+" posiz.txt > phash.txt
+cat phash.txt
+     
+    echo " "
+    echo -e "Associated $hastg \e[01;34mUSERS near $pos: \e[00m"
+echo " "
+grep -Eio "@[a-zA-Z0-9./:-]+" posiz.txt > pnomi.txt
+cat pnomi.txt 
+     
+     rm posiz.txt && rm phash.txt
+     rm pnomi.txt
+     echo " "
+     echo -e "\e[01;34mFor advanced OSINT search/software please send email to \e[01;32m> \e[00;36mcignointel@gmail.com\e[00m"
+     echo " "
