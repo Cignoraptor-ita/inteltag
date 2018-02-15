@@ -63,7 +63,7 @@ cat cornomi.txt
      echo "Insert position/City: (Exemple Venezia)"
      read pos
      
-     links2 -dump https://twitter.com/search?q=%23m5stelle%20near%3A%22$pos%22 > posiz.txt
+     links2 -dump https://twitter.com/search?q=%23$hoi%20near%3A%22$pos%22 > posiz.txt
     
     echo " "
 echo -e "\e[01;32mAssociated $hastg Hashtags near $pos: \e[00m"
