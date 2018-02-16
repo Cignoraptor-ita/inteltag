@@ -1,12 +1,12 @@
 # inteltag
 
-The mission is of this script is analyze and extract from an hashtag informations like:
+The mission of this script is analyze and extract from an hashtag informations like:
 
 - Associated Users and hashtags
 - The user who used most times this hashtag and analyze it
 
 For now is a simple but (i hope) helpful script for OSINT / SOCMINT.
-For additional and advanced functions contact >>> cignointel@gmail.com
+For additional and advanced functions contact > cignointel[AT]gmail.com
 
 Tested in Parrot 3.1
 
