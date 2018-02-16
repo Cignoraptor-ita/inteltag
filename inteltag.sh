@@ -19,7 +19,7 @@ echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\
 echo -e "========\e[01;32mINTEL\e[01;34mTAG============"
 echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-"
 echo  " "
-echo -e "\e[01;33mCodename: \e[01;34mTweet of the blue swan\e[00m"
+echo -e "\e[01;33mCodename: \e[01;34mEvil blue swan\e[00m"
 echo " "
         echo -e "\e[01;34mSearch an hashtag of interest and discover associated users and hashtags\e[00m"
         echo -e "Very simple \e[01;34mOSINT\e[00m tool for test purpose"
@@ -56,29 +56,39 @@ echo -e "\e[01;34mUSERS: \e[00m"
 echo " "
 grep -Eio "@[a-zA-Z0-9./:-]+" cor.txt > cornomi.txt
 cat cornomi.txt
-     rm cornomi.txt && rm corhash.txt && rm cor.txt
+     rm corhash.txt && rm cor.txt
      rm pert.txt && rm pert2.txt  
      
      echo " "
-     echo "Insert position/City: (Exemple Venezia)"
-     read pos
      
-     links2 -dump https://twitter.com/search?q=%23$hoi%20near%3A%22$pos%22 > posiz.txt
-    
-    echo " "
-echo -e "\e[01;32mAssociated $hastg Hashtags near $pos: \e[00m"
-echo " " 
-     grep -Eio "#[a-zA-Z0-9./:-]+" posiz.txt > phash.txt
-cat phash.txt
-     
-    echo " "
-    echo -e "Associated $hastg \e[01;34mUSERS near $pos: \e[00m"
-echo " "
-grep -Eio "@[a-zA-Z0-9./:-]+" posiz.txt > pnomi.txt
-cat pnomi.txt 
-     
-     rm posiz.txt && rm phash.txt
-     rm pnomi.txt
+     echo -e "\e[01;33mTop user: \e[00m"
      echo " "
+     cat cornomi.txt | awk '{h[$1]++}END{for (i in h){print h[i]" "i}}'|sort -nr | cat -n | head -n 1 > td.txt
+
+     grep -Eio "@[a-zA-Z0-9./:-]+" td.txt > tuser0.txt
+     #sed 's/1//'
+     rm td.txt
+
+     tus=$(cat tuser0.txt)
+     echo "$tus" > tuser.txt
+     rm tuser0.txt
+     ftus=$(cat tuser.txt)
+     cat tuser.txt
+     
+     echo " "
+     echo -e "\e[00;31mTop hashtag of $ftus: \e[00m"
+     
+     echo " "
+     links2 -dump https://twitter.com/search?q=$ftus > userchastg.txt
+     grep -Eio "#[a-zA-Z0-9./:-]+" userchastg.txt > uhash.txt
+     rm userchastg.txt
+     cat uhash.txt | awk '{h[$1]++}END{for (i in h){print h[i]" "i}}'|sort -nr | cat -n | head -n 1 > tha.txt
+     grep -Eio "#[a-zA-Z0-9./:-]+" tha.txt > thash.txt
+     rm tha.txt
+     cat thash.txt
+     rm cornomi.txt
+     rm thash.txt && rm uhash.txt && rm tuser.txt
+     echo " "
+     
      echo -e "\e[01;34mFor advanced OSINT search/software please send email to \e[01;32m> \e[00;36mcignointel@gmail.com\e[00m"
      echo " "
