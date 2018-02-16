@@ -1,10 +1,13 @@
 # inteltag
 
-The purpose of this test script is analyze an hashtag of interest.
+The mission is of this script is analyze and extract from an hashtag informations like:
 
-The mission is find users and hashtags associated with the target term.
+- Associated Users and hashtags
+- The user who used most times this hashtag and analyze it
 
-For now is a very simple but (i hope) helpful script for OSINT, maybe in future i will add other functions.
+For now is a simple but (i hope) helpful script for OSINT / SOCMINT.
+For additional and advanced functions contact >>> cignointel@gmail.com
+
 Tested in Parrot 3.1
 
 Usage: Install links2 (sudo apt-get install links2)
