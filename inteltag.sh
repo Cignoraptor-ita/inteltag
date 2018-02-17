@@ -19,7 +19,7 @@ echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\
 echo -e "========\e[01;32mINTEL\e[01;34mTAG============"
 echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-"
 echo  " "
-echo -e "\e[01;33mCodename: \e[01;34mEvil blue swan\e[00m"
+echo -e "\e[01;33mCodename: \e[01;34mTweety swan\e[00m"
 echo " "
         echo -e "\e[01;34mSearch an hashtag of interest and discover associated users and hashtags\e[00m"
         echo -e "Very simple \e[01;34mOSINT\e[00m tool for test purpose"
@@ -86,7 +86,23 @@ cat cornomi.txt
      grep -Eio "#[a-zA-Z0-9./:-]+" tha.txt > thash.txt
      rm tha.txt
      cat thash.txt
-     rm cornomi.txt
+     
+     echo " "
+     echo -e "\e[00;33mUsers who has commented this hashtag ($ftus) in the last \e[01;31m24H\e[00m "
+     
+     sleep 1
+     
+     echo " "
+     
+     date -d '1 day ago' '+%Y-%m-%d' > ptdate.txt
+     giorno=$(cat ptdate.txt)
+     
+     links2 -dump https://twitter.com/search?l=&q=%23m5s%20since%3A$giorno > 24tw.txt
+     grep -Eio "@[a-zA-Z0-9./:-]+" 24tw.txt > 24user.txt
+     rm 24tw.txt
+     cat 24user.txt
+     
+     rm cornomi.txt && rm 24user.txt
      rm thash.txt && rm uhash.txt && rm tuser.txt
      echo " "
      
