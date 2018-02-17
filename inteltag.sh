@@ -85,10 +85,11 @@ cat cornomi.txt
      cat uhash.txt | awk '{h[$1]++}END{for (i in h){print h[i]" "i}}'|sort -nr | cat -n | head -n 1 > tha.txt
      grep -Eio "#[a-zA-Z0-9./:-]+" tha.txt > thash.txt
      rm tha.txt
+     utha=$(cat thash.txt)
      cat thash.txt
      
      echo " "
-     echo -e "\e[00;33mUsers who has commented this hashtag ($ftus) in the last \e[01;31m24H\e[00m "
+     echo -e "\e[00;33mUsers who has commented this hashtag ($utha) in the last \e[01;31m24H\e[00m "
      
      sleep 1
      
@@ -97,7 +98,7 @@ cat cornomi.txt
      date -d '1 day ago' '+%Y-%m-%d' > ptdate.txt
      giorno=$(cat ptdate.txt)
      
-     links2 -dump https://twitter.com/search?q=%23m5s%20since%3A$giorno > 24tw.txt
+     links2 -dump https://twitter.com/search?q=%23$utha%20since%3A$giorno > 24tw.txt
      grep -Eio "@[a-zA-Z0-9./:-]+" 24tw.txt > 24user.txt
      rm 24tw.txt
      cat 24user.txt
