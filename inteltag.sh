@@ -97,12 +97,12 @@ cat cornomi.txt
      date -d '1 day ago' '+%Y-%m-%d' > ptdate.txt
      giorno=$(cat ptdate.txt)
      
-     links2 -dump https://twitter.com/search?l=&q=%23m5s%20since%3A$giorno > 24tw.txt
+     links2 -dump https://twitter.com/search?q=%23m5s%20since%3A$giorno > 24tw.txt
      grep -Eio "@[a-zA-Z0-9./:-]+" 24tw.txt > 24user.txt
      rm 24tw.txt
      cat 24user.txt
      
-     rm cornomi.txt && rm 24user.txt
+     rm cornomi.txt && rm 24user.txt && rm ptdate.txt
      rm thash.txt && rm uhash.txt && rm tuser.txt
      echo " "
      
