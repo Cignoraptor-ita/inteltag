@@ -37,8 +37,8 @@ echo " "
         echo -e "\e[01;31m OSINT SESSION FOR \e[01;01;44m$hastg\e[00m"
         echo " "
         echo $hastg > pert.txt
-        sed 's/#//' pert.txt
-        for word in `cat pert.txt`; do
+        cat pert.txt | sed 's/#//' > perth.txt
+        for word in `cat perth.txt`; do
 
 echo %23${word} >> pert2.txt
 done
@@ -58,7 +58,8 @@ grep -Eio "@[a-zA-Z0-9./:-]+" cor.txt > cornomi.txt
 cat cornomi.txt
      rm corhash.txt && rm cor.txt
      rm pert.txt && rm pert2.txt  
-     
+rm perth.txt     
+
      echo " "
      
      echo -e "\e[01;33mTop user: \e[00m"
@@ -110,22 +111,29 @@ cat cornomi.txt
 echo -e "(\e[00;33mJust Italian and English phrases\e[00m)"
 sleep 2
 
-links2 -dump mobile.twitter.com/search?l=it"&"q=$hoi+odio+OR+schifo+OR+vaffanculo+OR+vergogna > hos1.txt
+echo $hastg > pert.txt
+cat pert.txt | sed 's/#//' > perth.txt
+ost=$(cat perth.txt)
+
+
+
+links2 -dump mobile.twitter.com/search?l=it"&"q=$ost+odio+OR+schifo+OR+vaffanculo+OR+vergogna > hos1.txt
 sleep 0.7
-links2 -http.fake-user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1" -dump mobile.twitter.com/search?l=en"&"q=$hoi+hate+OR+shit+OR+shame+OR+fuck >> hos1.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1" -dump mobile.twitter.com/search?l=en"&"q=$ost+hate+OR+shit+OR+shame+OR+fuck >> hos1.txt
 sleep 0.3
-links2 -dump mobile.twitter.com/search?l=it"&"q=$hoi+odio+OR+schifo+OR+OR+vaffanculo+OR+vergogna >> hos1.txt
+links2 -dump mobile.twitter.com/search?l=it"&"q=$ost+odio+OR+schifo+OR+OR+vaffanculo+OR+vergogna >> hos1.txt
 sleep 0.4
-links2 -http.fake-user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1" -dump mobile.twitter.com/search?l=en"&"q=$hoi+hate+OR+shit+OR+shame+OR+fuck >> hos1.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1" -dump mobile.twitter.com/search?l=en"&"q=$ost+hate+OR+shit+OR+shame+OR+fuck >> hos1.txt
 
 cat hos1.txt | grep -e "schifo" -e "vergogna" -e "vaffanculo" -e "odio" > triste1
 cat hos1.txt | grep -e "hate" -e "shame" -e "fuck" -e "shit" > triste2
 
 cat triste1 triste2 > triste
+rm pert.txt && rm perth.txt
 
 echo " "
 echo -e "\e[00;31m============\e[00m"
-echo -e "\e[01;33mNegative phrases against $hastg (\e[00;31mVery rapid analysis)\e[00m"
+echo -e "\e[01;33mNegative phrases against the word:$ost (\e[00;31mVery rapid analysis)\e[00m"
 echo -e "\e[00;33m"
 cat triste | wc -l 
 echo -e "\e[00m"
