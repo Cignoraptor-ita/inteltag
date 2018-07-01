@@ -19,7 +19,7 @@ echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\
 echo -e "========\e[01;32mINTEL\e[01;34mTAG============"
 echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-"
 echo  " "
-echo -e "\e[01;33mCodename: \e[01;34mTweety swan\e[00m"
+echo -e "\e[01;33mCodename: \e[01;34mSwan in silence\e[00m"
 echo " "
         echo -e "\e[01;34mSearch an hashtag of interest and discover associated users and hashtags\e[00m"
         echo -e "Very simple \e[01;34mOSINT\e[00m tool for test purpose"
@@ -27,10 +27,7 @@ echo " "
         echo -e "Coded by \e[01;32mCignoraptor \e[00;33m---\e[00;34m root4sec6per3@openmailbox.org\e[00m"
         echo " "
         bar
-        
-        echo " "
-        
-        echo " "
+               echo " "
         echo -e "\e[00;34mInsert Hashtag of interest: (Exemple: \e[00;31m#AlfaRomeo\e[00m)"
         read hastg
         
@@ -45,7 +42,7 @@ done
         
 hoi=$(cat pert2.txt)
       
-links2 -dump https://twitter.com/search?q=$hoi > cor.txt
+links2 -dump mobile.twitter.com/search?q=$hoi > cor.txt
 
 echo " "
 echo -e "\e[01;32mHashtags: \e[00m"
@@ -79,7 +76,7 @@ cat cornomi.txt
      echo -e "\e[00;31mTop hashtag of $ftus: \e[00m"
      
      echo " "
-     links2 -dump https://twitter.com/search?q=$ftus > userchastg.txt
+     links2 -http.fake-user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1" -dump mobile.twitter.com/search?q=$ftus > userchastg.txt
      grep -Eio "#[a-zA-Z0-9./:-]+" userchastg.txt > uhash.txt
      rm userchastg.txt
      cat uhash.txt | awk '{h[$1]++}END{for (i in h){print h[i]" "i}}'|sort -nr | cat -n | head -n 1 > tha.txt
@@ -98,7 +95,7 @@ cat cornomi.txt
      date -d '1 day ago' '+%Y-%m-%d' > ptdate.txt
      giorno=$(cat ptdate.txt)
      
-     links2 -dump https://twitter.com/search?q=%23$utha%20since%3A$giorno > 24tw.txt
+     links2 -dump mobile.twitter.com/search?q=%23$utha%20since%3A$giorno > 24tw.txt
      grep -Eio "@[a-zA-Z0-9./:-]+" 24tw.txt > 24user.txt
      rm 24tw.txt
      cat 24user.txt
@@ -106,6 +103,36 @@ cat cornomi.txt
      rm cornomi.txt && rm 24user.txt && rm ptdate.txt
      rm thash.txt && rm uhash.txt && rm tuser.txt
      echo " "
-     
-     echo -e "\e[01;34mFor advanced OSINT search/software please send email to \e[01;32m> \e[00;36mcignointel@gmail.com\e[00m"
-     echo " "
+echo -e "\e[01;33mRapid hostility analysis against the target: \e[00m"
+echo -e "(\e[00;33mJust Italian and English phrases\e[00m)"
+sleep 2
+
+links2 -dump mobile.twitter.com/search?l=it"&"q=$hoi+odio+OR+schifo+OR+vaffanculo+OR+vergogna > hos1.txt
+sleep 0.7
+links2 -http.fake-user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1" -dump mobile.twitter.com/search?l=en"&"q=$hoi+hate+OR+shit+OR+shame+OR+fuck >> hos1.txt
+sleep 0.3
+links2 -dump mobile.twitter.com/search?l=it"&"q=$hoi+odio+OR+schifo+OR+OR+vaffanculo+OR+vergogna >> hos1.txt
+sleep 0.4
+links2 -http.fake-user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1" -dump mobile.twitter.com/search?l=en"&"q=$hoi+hate+OR+shit+OR+shame+OR+fuck >> hos1.txt
+
+cat hos1.txt | grep -e "schifo" -e "vergogna" -e "vaffanculo" -e "odio" > triste1
+cat hos1.txt | grep -e "hate" -e "shame" -e "fuck" -e "shit" > triste2
+
+cat triste1 triste2 > triste
+
+echo " "
+echo -e "\e[00;31m============\e[00m"
+echo -e "\e[01;33mNegative phrases against $hastg (\e[00;31mVery rapid analysis)\e[00m"
+echo -e "\e[00;33m"
+cat triste | wc -l 
+echo -e "\e[00m"
+sleep 1
+echo "$userc"
+echo " "
+
+rm hos1.txt && rm triste1 && rm triste2
+rm triste
+echo " "
+
+echo -e "\e[01;34mFor advanced OSINT search/software please send email to \e[01;32m> \e[00;36mcignointel@gmail.com\e[00m"
+echo " " 
