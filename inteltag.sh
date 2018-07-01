@@ -19,7 +19,7 @@ echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\
 echo -e "========\e[01;32mINTEL\e[01;34mTAG============"
 echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-"
 echo  " "
-echo -e "\e[01;33mCodename: \e[01;34mTweety swan\e[00m"
+echo -e "\e[01;33mCodename: \e[01;34mSwan in silence\e[00m"
 echo " "
         echo -e "\e[01;34mSearch an hashtag of interest and discover associated users and hashtags\e[00m"
         echo -e "Very simple \e[01;34mOSINT\e[00m tool for test purpose"
