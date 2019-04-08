@@ -14,6 +14,17 @@ bar
         
 echo " "
 
+echo -e "\e[00;33mChecking for resources: \e[00m"
+sleep 0.3
+
+command -v links2 >/dev/null 2>&1 || { echo "links2 it's not installed.  Aborting." >&2; exit 1; }
+:
+
+clear
+bar
+
+echo " "
+
 echo " "
 echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-"
 echo -e "========\e[01;32mINTEL\e[01;34mTAG============"
