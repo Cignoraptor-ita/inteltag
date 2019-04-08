@@ -35,7 +35,7 @@ echo " "
         echo -e "\e[01;34mSearch an hashtag of interest and discover associated users and hashtags\e[00m"
         echo -e "Very simple \e[01;34mOSINT\e[00m tool for test purpose"
         
-        echo -e "Coded by \e[01;32mCignoraptor \e[00;33m---\e[00;34m root4sec6per3@openmailbox.org\e[00m"
+        echo -e "Coded by \e[01;32mCignoraptor \e[00m"
         echo " "
         bar
         
